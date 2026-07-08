@@ -30,7 +30,6 @@ paths:
           schema:
             type: string
             format: date-time
-          description: ISO 8601 UTC start time to begin search
         - name: end_time
           in: query
           required: true
@@ -73,7 +72,6 @@ paths:
               properties:
                 slot_id:
                   type: string
-                  description: The specific AvailabilitySlot ID returned from the /availability endpoint.
                 customer_info:
                   $ref: '#/components/schemas/CustomerInfo'
       responses:
@@ -86,7 +84,7 @@ paths:
         '409':
           description: Slot is no longer available (Conflict).
         '422':
-          description: Validation error or policy rejection (e.g., deposit required).
+          description: Validation error or policy rejection.
 
 components:
   schemas:
@@ -97,12 +95,14 @@ components:
         - merchant_id
         - location_id
         - service_id
+        - provider_id
         - start_time
         - end_time
         - status
       properties:
         id:
           type: string
+          description: Synthetic ID representing this exact time block
         merchant_id:
           type: string
         location_id:
@@ -112,6 +112,7 @@ components:
         provider_id:
           type: string
           nullable: true
+          description: Null if pool-based or auto-assigned
         start_time:
           type: string
           format: date-time
@@ -120,7 +121,10 @@ components:
           format: date-time
         status:
           type: string
-          enum: [available, held, booked]
+          enum:
+            - available
+            - held
+            - booked
 
     CustomerInfo:
       type: object
@@ -138,22 +142,27 @@ components:
           format: email
         phone:
           type: string
+          description: Optional phone number
 
     Booking:
       type: object
       required:
         - id
+        - external_booking_id
+        - idempotency_key
         - merchant_id
         - slot_id
         - customer_info
         - status
         - ai_app_id
+        - created_at
       properties:
         id:
           type: string
         external_booking_id:
           type: string
           nullable: true
+          description: The ID returned by the SaaS platform (null until confirmed)
         idempotency_key:
           type: string
         merchant_id:
@@ -164,9 +173,15 @@ components:
           $ref: '#/components/schemas/CustomerInfo'
         status:
           type: string
-          enum: [pending, held, confirmed, cancelled, failed]
+          enum:
+            - pending
+            - held
+            - confirmed
+            - cancelled
+            - failed
         ai_app_id:
           type: string
+          description: Audit trail for the AI agent
         created_at:
           type: string
           format: date-time
