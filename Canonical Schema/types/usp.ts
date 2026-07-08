@@ -8,7 +8,7 @@ export type UspID = string; // Prefixed IDs, e.g., "mch_abc123"
 export interface Merchant {
   id: UspID;
   external_saas_id: string;
-  saas_platform: 'mindbody' | 'square' | 'fresha' | 'custom' | string;
+  saas_platform: 'mindbody' | 'square' | 'boulevard' | 'custom' | string;
   name: string;
   vertical: 'health_wellness' | 'beauty' | 'home_services' | 'automotive' | string;
   status: 'active' | 'suspended' | 'pending_consent';
@@ -37,7 +37,7 @@ export interface Service {
   description?: string;
   duration_minutes: number;
   price_type: 'fixed' | 'starting_at' | 'variable' | 'free';
-  price_amount: number | null; // Lowest denomination (e.g., cents)
+  price_amount: number | null; // Lowest denomination (e.g., cents: 5000 = $50.00)
   currency: CurrencyCode;
   policy_id?: UspID;
 }
@@ -86,4 +86,43 @@ export interface Booking {
   status: 'pending' | 'held' | 'confirmed' | 'cancelled' | 'failed';
   ai_app_id: string; // Audit trail for the AI agent
   created_at: ISO8601Date;
+}
+
+/**
+ * NEW PHASE 0.1 ENTITIES
+ * Objects required for deep platform synchronization & foundational architecture
+ */
+
+export interface Resource {
+  id: UspID; // e.g., "rsc_123"
+  merchant_id: UspID;
+  location_id: UspID;
+  name: string; // e.g., "Dental Chair A", "Massage Room 3"
+  type: 'room' | 'chair' | 'bay' | 'equipment' | string;
+  capacity: number; // Max concurrent services it can hold
+  status: 'active' | 'maintenance' | 'inactive';
+}
+
+export interface PermissionGrant {
+  id: UspID; // e.g., "prm_999"
+  merchant_id: UspID;
+  ai_app_id: string; // The consumer-facing AI agent platform identifier
+  scopes: ('read:merchants' | 'read:availability' | 'write:bookings' | 'manage:bookings')[];
+  granted_at: ISO8601Date;
+  expires_at: ISO8601Date | null;
+}
+
+export interface IntegrationCredential {
+  id: UspID; // e.g., "crd_888"
+  merchant_id: UspID;
+  saas_platform: string; // e.g., "mindbody"
+  encrypted_credentials: {
+    api_key?: string;
+    oauth_access_token?: string;
+    oauth_refresh_token?: string;
+    api_base_url?: string;
+    meta_json?: string; // Flexible SaaS metadata storage (e.g., salonId, locationMappings)
+  };
+  last_sync_status: 'success' | 'failed';
+  last_sync_at: ISO8601Date;
 }
