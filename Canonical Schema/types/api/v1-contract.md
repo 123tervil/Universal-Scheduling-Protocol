@@ -28,6 +28,6 @@ It standardizes asynchronous, highly non-uniform appointment data structures int
 
 ## 4. Intentionally Excluded from Core v1 Api
 To streamline implementation velocity during early field tests, the following mechanisms are omitted from the protocol-level interface:
-* **Inline Payments / Deposits:** Deep checking constraints flag if deposits are needed, but actual processing happens in parent wrapper context, not this pipeline.
+* **Inline Payments / Deposits:** Deep checking constraints flag if deposits are needed, but actual processing happens in parent wrapper context, not this pipeline at this moment.
 * **Resource Optimization Engine:** Rooms, tables, and tool assignment definitions exist strictly on internal database schemas (`usp.ts`); they do not present directly to runtime external API clients yet.
 * **Complex/Recursive Availability Rules:** No structural support for multi-part treatments or parallel package combinations. Everything maps downstream to atomic standalone chunks.
