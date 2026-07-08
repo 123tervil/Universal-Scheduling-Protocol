@@ -1,62 +1,119 @@
-AI System (agent, Voice, app)
-  ├─ Uses either:
-  │    ├─ MCP (Model Context Protocol) to discover & call tools
-  │    └─ Direct API calls to USP endpoints
-  │
-  └─ Calls USP Network (core API)
-        ├─ Query Layer
-        │    ├─ Search merchants
-        │    ├─ Get services
-        │    ├─ Get providers
-        │    ├─ Get availability
-        │    └─ Get policies/pricing, etc.
-        │
-        └─ Action Layer
-             ├─ Create booking
-             ├─ Hold slot
-             ├─ Confirm booking
-             ├─ Cancel booking
-             ├─ Reschedule booking
-             └─ Get booking status, etc.
+# USP Mindmap
 
-USP Network (central platform)
-  ├─ Canonical Data Layer
-  │    └─ Normalized model: Merchant, Location, Service, Provider,
-  │       Resource, Availability slot, Booking policy, etc.
-  │
-  ├─ Router / Orchestrator
-  │    └─ For each merchant:
-  │         ├─ Knows: “This merchant is on Platform X”
-  │         ├─ Knows: “Platform X is served by Connector X”
-  │         └─ Routes API calls through Connector X
-  │
-  ├─ Connector Layer (per SaaS platform)
-  │    ├─ Connector A (e.g., for Salon SaaS A)
-  │    ├─ Connector B (e.g., for Dental EMR B)
-  │    ├─ Connector C (e.g., for Home Services SaaS C)
-  │    └─ Each connector:
-  │         ├─ Maps native objects → canonical model
-  │         ├─ Syncs availability & booking state
-  │         └─ Executes booking actions in the native system
-  │
-  ├─ Sync Layer
-  │    └─ Polling, webhooks, reconciliation → keeps data fresh
-  │
-  └─ Trust Layer
-       ├─ Auth & scopes for AI apps
-       ├─ Merchant consent (what data/actions are allowed)
-       ├─ Policy enforcement (notice windows, deposits, etc.)
-       └─ Audit logs
+```text
+Universal Scheduling Protocol (USP)
+├─ 1. AI Systems
+│  ├─ AI apps / agents
+│  ├─ Consumer assistants
+│  ├─ Voice agents
+│  ├─ Chatbots
+│  └─ Internal enterprise agents
+│
+├─ 2. Access Layer
+│  ├─ Direct API integration
+│  └─ MCP wrapper / tool layer
+│     └─ Lets models call USP tools in a more agent-friendly way
+│
+├─ 3. USP Network
+│  ├─ Query Layer
+│  │  ├─ Search merchants
+│  │  ├─ Get services
+│  │  ├─ Get providers
+│  │  ├─ Get pricing / duration
+│  │  ├─ Get booking policies
+│  │  └─ Get real-time availability
+│  │
+│  ├─ Action Layer
+│  │  ├─ Create booking
+│  │  ├─ Hold slot
+│  │  ├─ Confirm booking
+│  │  ├─ Cancel booking
+│  │  ├─ Reschedule booking
+│  │  └─ Retrieve booking status
+│  │
+│  ├─ Canonical Data Layer
+│  │  ├─ Merchant
+│  │  ├─ Location
+│  │  ├─ Service
+│  │  ├─ Provider
+│  │  ├─ Resource
+│  │  ├─ Availability slot
+│  │  ├─ Booking policy
+│  │  ├─ Permission grant
+│  │  └─ Integration credential
+│  │
+│  ├─ Routing / Orchestration Layer
+│  │  ├─ Looks up which platform a merchant uses
+│  │  ├─ Selects the right connector
+│  │  ├─ Translates USP request → native platform request
+│  │  └─ Translates native response → USP response
+│  │
+│  ├─ Sync Layer
+│  │  ├─ Polling
+│  │  ├─ Webhooks
+│  │  ├─ Change events
+│  │  └─ Reconciliation jobs
+│  │
+│  └─ Trust Layer
+│     ├─ App authentication
+│     ├─ Authorization / scopes
+│     ├─ Merchant consent
+│     ├─ Partner visibility controls
+│     ├─ Usage policies
+│     ├─ Audit logs
+│     └─ Revocation
+│
+├─ 4. Connector Layer
+│  ├─ Connector for Platform A
+│  ├─ Connector for Platform B
+│  ├─ Connector for Platform C
+│  └─ Each connector does:
+│     ├─ Auth with native platform
+│     ├─ Data mapping to USP schema
+│     ├─ Availability sync
+│     ├─ Booking state sync
+│     └─ Booking / cancel / reschedule execution
+│
+├─ 5. Scheduling Platforms (Vertical SaaS)
+│  ├─ Salon software
+│  ├─ Dental / healthcare scheduling systems
+│  ├─ Home services platforms
+│  ├─ Automotive service systems
+│  ├─ Pet services software
+│  ├─ Professional services schedulers
+│  └─ Other appointment-based SaaS systems
+│
+├─ 6. Merchants
+│  ├─ A merchant lives on one scheduling platform
+│  ├─ Merchant opts into USP through that platform
+│  ├─ Merchant controls what data is exposed
+│  ├─ Merchant controls which AI apps can act
+│  └─ Merchant remains source-authorized, but source-of-truth data lives in the platform
+│
+├─ 7. Routing Logic
+│  ├─ AI asks USP for merchant or availability
+│  ├─ USP identifies merchant's platform
+│  ├─ USP routes through that platform's connector
+│  ├─ Connector talks to native scheduling system
+│  └─ USP returns a normalized response to the AI
+│
+└─ 8. Simplest Flow
+   ├─ User asks AI to book something
+   ├─ AI uses MCP or direct API to call USP
+   ├─ USP searches normalized merchant data
+   ├─ USP checks live availability via connector
+   ├─ User picks a slot
+   ├─ AI sends booking request to USP
+   ├─ USP routes action to merchant's scheduling platform
+   └─ Booking is created in the native system and returned to the AI
+```
 
-Merchant’s Scheduling Platform (SaaS)
-  ├─ Native data model (different from USP)
-  ├─ Native APIs (for auth, data, actions)
-  └─ Connected to USP via a Connector
+## One-line model
 
-Merchant
-  ├─ On a scheduling platform (e.g., Salon SaaS X)
-  ├─ Opt-in to USP via that platform
-  └─ Controls:
-       ├─ What data is exposed
-       ├─ Which AI apps can access
-       └─ Which actions are allowed
+**AI system → MCP or API → USP network → connector → merchant's scheduling platform → booking result back through USP**
+
+## Short interpretation
+
+USP is the common interface in the middle, while connectors are the adapters that let USP talk to whichever scheduling system a merchant already uses.
+
+The merchant is not the routing engine; the USP network is the routing engine, and it chooses the right connector based on where the merchant is hosted.
