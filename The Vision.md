@@ -6,9 +6,9 @@ This document outlines the strategic foundation, ecosystem challenges, and core 
 
 ## 1. The Core Problem & Current Landscape
 
-Currently, the interaction between merchants and consumers is highly manual and fragmented. The primary ways to interact with merchants require booking via a website (manual clicking or screen burn) or calling them directly. Consumers must scour through many options, leaving many businesses undiscoverable.
+Currently, the interaction between merchants and consumers is highly manual and fragmented. The primary ways to interact with merchants require booking via a website (manual clicking or screen burn) or calling/texing them directly. Consumers must go through many options, leaving many businesses undiscoverable or with a friction filled process. On top of this, AI has to reason across an overwhelming number of providers and services, many hidden behind proprietary systems, closed membership access, and siloed “clubs,” which makes it difficult to recommend the right option for a specific person and goal without deep, structured access to the underlying supply.
 
-While AI has tremendous potential, its current state is limited to shallow data recommendations. AI can only suggest who to visit (which is often biased and consolidated), leaving the actual execution (the booking, cancelling, and rescheduling) entirely up to the user. This is largely because AI heavily depends on static data sources like Google Business Profiles, which frequently become stale.
+While AI has tremendous potential, its current state is limited to shallow data recommendations. AI can only suggest who to visit (which is often shallow, biased and consolidated), leaving the actual execution (the booking, cancelling, and rescheduling) entirely up to the user. This is largely because AI heavily depends on static data sources like Google Business Profiles, which frequently become stale.
 
 ---
 
@@ -20,7 +20,7 @@ A successful AI scheduling protocol must satisfy the unique needs and leverage t
 
 - Wants/Needs: Convenience, speed, certainty, low effort, trust, good price/value, personalization, and control.
 - Information Needs: Availability, price, safety/trust, and whether the process has friction.
-- Behavior Shift: Consumers want to offload trust to AI, relying on agents to choose what is best for them.
+- Behavior Shift: Consumers could potentially offload trust to AI, relying on agents to choose what is best for them.
 
 ### Merchants (Appointment-Based)
 
@@ -59,7 +59,7 @@ For “AI Booking” to evolve from a novelty to a trusted action engine, it mus
 
 ## 4. Execution Strategy: The Company Framework
 
-To solve the extreme fragmentation and liability risks, a centralized entity is required. The vision is to build a closed company in control, with an open protocol (USP) around it. Because the risk surface is too high, it requires open calls but closed control.
+To solve the extreme fragmentation and liability risks, while delivering a optimal user experience(deeply personal ai with access to any merchant), a centralized entity is required. The vision is to build a closed company in control(BusyBook, Inc.), with an open protocol (USP) around it. Because the risk surface is too high, it requires open calls but closed control. 
 
 ### Core Infrastructure Layers
 
@@ -70,7 +70,7 @@ To solve the extreme fragmentation and liability risks, a centralized entity is 
 
 ### Why a Central Company is Needed
 
-Without a centralized platform, the liability of AI mistakes (like booking fake merchants leading to physical harm) is unmanageable. A company is required to own:
+Without a centralized platform, the liability of AI mistakes (like booking fake merchants leading to physical harm) is unmanageable for all parties of this ecosystem. A company is required to own:
 
 - Trust and Safety (Liability)
 - Merchant Relationships
@@ -81,4 +81,4 @@ Without a centralized platform, the liability of AI mistakes (like booking fake 
 
 ## Conclusion
 
-“AI Booking” is the catalyst to AI trust. If done correctly and rolled out safely, it turns an AI chat experience into a real action engine, building a default status of user habit and dependency.
+“AI Scheduling” is the catalyst to AI trust. If done correctly and rolled out safely, it turns an AI chat experience into a real action engine, building a default status of user habit and dependency.
