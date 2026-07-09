@@ -17,6 +17,7 @@ That fragmentation creates several problems:
 - SaaS platforms must build custom integrations for each new partner, marketplace, or AI company.
 
 USP solves this by creating a shared protocol layer that standardizes how merchant scheduling data is exposed and how actions are executed.
+[With vs W:O UCP.pdf](https://github.com/user-attachments/files/29858325/With.vs.W.O.UCP.pdf)
 
 ## How appointments are booked: today vs USP
 
