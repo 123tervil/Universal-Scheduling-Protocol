@@ -22,13 +22,51 @@ USP solves this by creating a shared protocol layer that standardizes how mercha
 
 <table>
   <tr>
-    <td align="center">
-      <b>Today: fragmented booking flow</b><br/>
-      <img src="images/today-booking-flow.png" alt="Today booking flow" width="450"/>
+    <td valign="top" width="50%">
+
+<b>TODAY</b>
+
+- Consumer  
+  ↓  
+- Google / Yelp search  
+  ↓  
+- Call / Text **or** Booking Website  
+  ↓  
+- Merchant’s calendar (siloed system)  
+  ↓  
+- Appointment Booked  
+
+Key characteristics:
+
+- Fragmented search and booking experience.
+- Each SaaS or merchant system is its own silo.
+- No standard way for AI agents to discover or book.
+
     </td>
-    <td align="center">
-      <b>AI era: USP‑mediated booking flow</b><br/>
-      <img src="images/usp-booking-flow.png" alt="USP booking flow" width="450"/>
+    <td valign="top" width="50%">
+
+<b>AI ERA WITH USP</b>
+
+- Consumer  
+  ↓  
+- AI Agent / AI System  
+  ↓  
+- Universal Scheduling Protocol (USP)  
+  ↓  
+- Connector layer (maps USP → SaaS)  
+  ↓  
+- Correct SaaS (Square, Mindbody, Booksy, Boulevard, Jane, …)  
+  ↓  
+- Merchant  
+  ↓  
+- Appointment Booked  
+
+Key characteristics:
+
+- One protocol for discovery, availability, and actions.
+- AI agents integrate once to USP instead of every SaaS.
+- Merchants keep existing systems but become universally bookable.
+
     </td>
   </tr>
 </table>
