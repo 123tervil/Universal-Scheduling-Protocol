@@ -1,7 +1,5 @@
 # Universal Scheduling Protocol (USP)
 
-The **Universal Scheduling Protocol (USP)** is a network standard for enabling AI agents to securely discover, book, cancel, and reschedule appointments across local service providers, regardless of which scheduling software a merchant uses.
-
 Today, service businesses are fragmented across many vertical SaaS platforms. These platforms are important because they store merchant data, provider data, services, scheduling logic, and availability, but AI systems have no standard way to access that information or safely act on it on behalf of users. USP exists to solve that interoperability gap.
 
 USP is designed to unify fragmented scheduling infrastructure across categories such as health and wellness, healthcare, beauty, home services, business services, automotive, pet services, professional services, construction and trades, real estate, events and entertainment, education, and public sector services.
