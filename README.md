@@ -18,6 +18,21 @@ That fragmentation creates several problems:
 
 USP solves this by creating a shared protocol layer that standardizes how merchant scheduling data is exposed and how actions are executed.
 
+## How appointments are booked: today vs USP
+
+<table>
+  <tr>
+    <td align="center">
+      <b>Today: fragmented booking flow</b><br/>
+      <img src="images/today-booking-flow.png" alt="Today booking flow" width="450"/>
+    </td>
+    <td align="center">
+      <b>AI era: USP‑mediated booking flow</b><br/>
+      <img src="images/usp-booking-flow.png" alt="USP booking flow" width="450"/>
+    </td>
+  </tr>
+</table>
+
 ## What USP Does
 
 USP creates a common standard so that:
